@@ -6,12 +6,7 @@ function main() {
         i.addEventListener("click", show);
     }
     
-    function allHide() {
-        
-    }
-    
     function show(event) {
-        allHide();
         let tg = event.target;
         let ul = tg.previousElementSibling;
         ul.hidden = !ul.hidden;
