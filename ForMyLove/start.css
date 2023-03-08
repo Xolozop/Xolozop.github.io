@@ -1,0 +1,47 @@
+body { background-color: lightyellow; }
+canvas { 
+    display: block;
+    margin: 50px auto; 
+}
+
+div {
+    display: none;
+    margin: 0 auto;
+    width: 76px;
+    height: 76px;
+    border-radius: 25px;
+    border: 2px solid lightyellow;
+    transition: border 0.7s ease-out 0.2s;
+}
+
+a {
+    position: relative;
+    left: -10px;
+    top: 15px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-bottom: 5px solid darkblue;
+    border-right: 5px solid darkblue;
+    margin: 0 auto;
+    transform: rotate(-45deg);
+}
+
+div:hover {
+    cursor: pointer;
+    border: 2px solid darkblue;
+}
+
+div:hover + p {
+    color: darkblue;
+}
+
+P {
+    margin: 10px;
+    font-family: monospace;
+    font-size: 2em;
+    display: none;
+    color: lightyellow;
+    text-align: center;
+    transition: color 0.7s ease-out 0.2s;
+}
