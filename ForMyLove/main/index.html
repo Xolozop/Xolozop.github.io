@@ -4,16 +4,70 @@
         <!--<title>I love you, Ari</title>-->
         <meta charset="utf-8">
         <link rel="stylesheet" href="index.css">
+        <script>
+            function showMenu() {
+                let elem = document.getElementById("hiddenBtn");
+                if (elem.previousElementSibling.style.display == "block") {
+                    elem.children[0].innerHTML = "▼";
+                    elem.style.borderTop = "2px solid darkblue";
+                    elem.style.borderBottom = "none";
+                    elem.previousElementSibling.style.display = "none";
+                    console.log();
+                } else {
+                    elem.children[0].innerHTML = "▲";
+                    elem.style.borderBottom = "2px solid darkblue";
+                    elem.style.borderTop = "none";
+                    elem.previousElementSibling.style.display = "block";
+                }
+              };
+        </script>
     </head>
 
     <body>
-        <nav><ul>
-            <li><p class="una">Главная</p></li>
-            <li><a href="not-yet.html">Больше</a></li>
-            <li><a href="not-yet.html">О нас</a></li>
-            <li><a href="../start.html">К интро</a></li>
-        </ul></nav>
+        <nav>
+            <h2>Меню</h2>
+            <ul>
+                <li><p class="una">Главная</p></li>
+                <li><a href="not-yet.html">Без имени</a></li>
+                <li><a href="not-yet.html">О нас</a></li>
+                <li><a href="../start.html">К интро</a></li>
+            </ul>
+            <p onclick="showMenu()" id="hiddenBtn">
+                <a>▼</a>
+            </p>
+        </nav>
 		<main>
+            <!--<h2>Server</h2>
+            <div>
+                <p>Once upon a midnight dreary, while I wandered meek and weary,
+                    Over many a quaint and spurious torrent of forbidden lore,
+                    As they fondled, softly fapping, suddenly there came a slapping,
+                    As of websites neatly snapping, slapping at my firewall door.
+                    `'Tis some hacker,' I muttered, `probing at my firewall door -
+                    Only this, and nothing more.'
+
+                    And the tabs they came unbidden, nought flesh of that most sightly maiden
+                    Thrilled me - filled me with fantastic terrors never felt before;
+                    So that now, to still the ticking of the glass, I stood repeating
+                    `'Tis some bugger on the fibre taking bandwidth from my door -
+                    Some late pervert leacher taking bandwidth from my door; -
+                    This it is, and nothing more,'
+                </p>
+                <p>Presently my patience lingered; hesitating them the finger,
+                    `n00b!,' IM'd I, `or n00bette, your intrusion I do abhor;
+                    But the fact is I was fapping, and so gently you came hacking,
+                    And so faintly you came tapping, tapping at my O/S back door,
+                    That IP hence, I did deny you' - yet here lies my O/S back door; -
+                    Just a ping, and nothing more.
+
+                    Open here, I flung the slider, with hope of seeing that inside her,
+                    As the ones had flung within there in the days of yore.
+                    Not the least hesitant he; not a bit stopped or stayed thee;
+                    But, not bone nor making to the lady, lovely in my store -
+                    Perched a resident, Apache serving from the store -
+                    Perched, and sat, and nothing more.
+                </p>
+            </div>-->
             <h2>♥</h2>
             <div>
                 <p class="poetry">
@@ -69,6 +123,7 @@
                     Что я только твоя.<br>
                 </p>
             </div>
+
             <hr>
         </main>
     </body>
