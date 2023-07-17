@@ -1,0 +1,112 @@
+@font-face {
+    font-family: cool;
+    src: url('fonts/cool.ttf');
+}
+
+#logo {
+    width: 20%;
+}
+
+header, footer {
+    border: 1px solid white;
+    text-align: center;
+}
+
+footer { text-align: right; padding-right: 20px; margin-top: 50px; }
+
+body {
+    font-family: cool;
+    letter-spacing: 4px;
+    width: 90%;
+    margin: 10px auto;
+    font-size: 1em;
+    color: white;
+    background-color: rgb(79, 51, 56);
+}
+
+.mainsec {
+    width: 40%;
+}
+
+nav {
+    width: 20%;
+    text-align: right;
+}
+
+a {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.mainsec img {
+    width: 200px;
+}
+
+#two {
+    margin-bottom: 10px;
+}
+
+.mainsec img:first-of-type {
+    width: 90%;
+    margin: 10px;
+}
+
+#main, .sdance {
+    display: flex;
+}
+
+.sdance img {
+    align-content: center;
+    height: 200px;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li:hover a {
+    color: firebrick;
+    opacity: 0.5;
+}
+
+h1 {
+    text-align: center;
+}
+
+td {
+    border: 1px solid white;
+    width: 12%;
+    height: 150px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+}
+
+#events {
+    border: 1px dashed white;
+    margin: 10px 0;
+    padding: 15px;
+    margin-right: 25px;
+}
+
+#tsec img {
+    width: 100%;
+}
+
+#tsec {
+    width: 100%;
+}
+
+#tsec td:nth-last-of-type(2) {
+    width: 50%;
+}
+
+#tsec td  {
+    vertical-align: top;
+    text-align: left;
+    width: 25%;
+    border: none;
+}
