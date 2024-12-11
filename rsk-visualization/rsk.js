@@ -110,5 +110,5 @@ function delay(ms) {
 }
 
 // Пример использования
-const permutation = [3, 1, 2, 4];
+const permutation = [3, 1, 6, 10, 2, 5, 8, 4, 9, 7];
 classicalRSK(permutation);
