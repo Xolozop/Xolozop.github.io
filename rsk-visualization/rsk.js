@@ -160,11 +160,9 @@ async function withLocalRulesRSK(perm) {
                 last_cells[x].style.color = 'var(--color' + (current[x].up%6).toString() + ')';
             }
 
-            // cells[x].style.borderLeftColor = 'var(--color' + (current[x].left%6).toString() + ')';
-            // cells[x].style.borderBottomColor = 'var(--color' + (current[x].down%6).toString() + ')';
             cells[x].style.borderRightColor = 'var(--color' + (current[x].right%6).toString() + ')';
             cells[x].style.borderTopColor = 'var(--color' + (current[x].up%6).toString() + ')';
-            await delay(1000);
+            await delay(500);
         }
         // Обновление P
         const a = current[n - 1].right;
