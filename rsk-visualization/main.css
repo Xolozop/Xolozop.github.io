@@ -1,0 +1,83 @@
+:root {
+    --color0: grey;
+    --color1: black;
+    --color2: red;
+    --color3: blue;
+    --color4: green;
+    --color5: orange;
+}
+
+.tableau {
+    display: block;
+    width: auto;
+    margin: 10px;
+    /* border: 1px dotted #000; */
+    /* height: 100%; */
+    padding: 10px;
+}
+.pair .tableau:first-child() {
+    height: 100%;
+}
+.cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    margin: 1px;
+}
+div#classical {
+    width: auto;
+    display: flex;
+    align-items: start;
+    flex-wrap: wrap;
+    align-items: stretch;
+    /* border: 1px solid black;*/
+    padding: 10px;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 5px;
+}
+.pair {
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #000;
+    margin: 10px 1px;
+}
+.pair p:first-child {
+    text-align: center;
+    border-bottom: 1px dotted #000;
+}
+
+td {
+    border: 3px solid gray;
+    width: 2em;
+    height: 2em;
+    text-align: center;
+}
+
+section {
+    margin-left: 20px;
+}
+section h2 {
+    margin-left: -20px;
+}
+
+.highlight {
+    background-color: aquamarine;
+}
+
+.no-border {
+    border: none;
+}
+
+section:first-of-type {
+    float: left;
+    margin-right: 30px;
+}
