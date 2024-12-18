@@ -217,6 +217,6 @@ function runRSK() {
     const permInput = document.getElementById('perm-btn').value;
     const permutation = permInput.split(' ').map(Number);
     classicalRSK(permutation); // анимация
-    createTable(permutation);
-    withLocalRulesRSK(permutation);
+    //createTable(permutation);
+    //withLocalRulesRSK(permutation);
 }
