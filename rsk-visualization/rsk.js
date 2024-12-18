@@ -162,7 +162,9 @@ async function withLocalRulesRSK(perm) {
 
             cells[x].style.borderRightColor = 'var(--color' + (current[x].right%6).toString() + ')';
             cells[x].style.borderTopColor = 'var(--color' + (current[x].up%6).toString() + ')';
+            cells[x].style.backgroundColor = 'lightcoral';
             await delay(500);
+            cells[x].style.backgroundColor = 'white';
         }
         // Обновление P
         const a = current[n - 1].right;
@@ -189,6 +191,8 @@ function createTable(perm) {
     for (let i = 0; i < n; i++) {
         const cell = document.createElement('td');
         cell.classList.add('no-border');
+        cell.style.color = 'var(--color0)';
+        cell.textContent = '0';
         row.appendChild(cell);
     }
     table.appendChild(row);
@@ -204,6 +208,8 @@ function createTable(perm) {
         }
         const cell = document.createElement('td');
         cell.classList.add('no-border');
+        cell.style.color = 'var(--color0)';
+        cell.textContent = '0';
         row.appendChild(cell);
         table.appendChild(row);
     }
@@ -213,10 +219,120 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+colors = ["black", "red", "blue", "green", "orange"];
+
+async function geometricalRSK(perm) {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const scale = 35;
+
+    // Устанавливаем размер поля
+
+    let P = [];
+    let Q = [];
+    let permutation = new Map();
+    let skeleton = new Map();
+
+    // Заполнение карты перестановки
+    ctx.fillStyle = "black";
+    let n = perm.length;
+    for (let i = 0; i < perm.length; i++) {
+        permutation.set(i + 1, perm[i]); // (j; σ(j))
+        ctx.fillRect(i*scale+(scale-5)/2, (n-perm[i])*scale+(scale-5)/2, 5, 5);
+    }
+
+    let i = 0; // порядок скелета
+
+    while (permutation.size > 0) { // пока есть элементы в перестановке
+        let mem = Array.from(permutation.values())[0]; // первое значение
+        ctx.strokeStyle = colors[i];
+        console.log(i);
+        console.log(permutation);
+        while (permutation.size > 0) { // построение теней
+            P[i] = [];
+            Q[i] = [];
+
+            Q[i].push(Array.from(permutation.keys())[0]); // индекс крайней левой точки тени
+
+            let prev = Array.from(permutation.values())[0];
+            let val = Array.from(permutation.keys())[0];
+            permutation.delete(Array.from(permutation.keys())[0]); // удаляем первое значение
+
+            ctx.beginPath();
+            ctx.moveTo((val-1)*scale+(scale-5)/2+2, 0);
+            ctx.lineTo((val-1)*scale+(scale-5)/2+2, (n-prev+1)*scale-(scale-5)/2-2);
+
+            let path = `${val}:${prev} `;
+
+            let calculate = true;
+            for (let [key, value] of permutation) {
+                if (value === mem + 1) { // ниже границы последней тени
+                    mem = value;
+                    calculate = false;
+                }
+
+                if (value < prev) { // подходящая точка для построения тени
+                    skeleton.set(key, prev); // инициализация новой точки скелета
+                    ctx.fillStyle = colors[i+1];
+                    ctx.lineTo((key-1)*scale+(scale-5)/2+2, (n-prev)*scale+(scale-5)/2+2);
+                    ctx.lineTo((key-1)*scale+(scale-5)/2+2, (n-value)*scale+(scale-5)/2+2);
+                    ctx.fillRect((key-1)*scale+(scale-5)/2, (n-prev)*scale+(scale-5)/2, 5, 5);
+                    prev = value;
+                    permutation.delete(key); // удаляем текущий элемент
+                }
+            }
+            P[i].push(prev); // индекс крайней нижней точки тени
+            ctx.lineTo(n*scale, (n-prev+1)*scale-(scale-5)/2-2);
+            path += `${n}:${prev} `;
+            console.log(path);
+            ctx.stroke();
+            await delay(1000);
+        }
+        // Обновляем permutation и skeleton
+        permutation = new Map(skeleton);
+        skeleton.clear(); // очищаем skeleton для следующей итерации
+        i++;
+    }
+    return [P, Q]; // возвращаем P и Q
+}
+
+function createCanvas(perm) {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const scale = 35;
+    const n = perm.length;
+
+    // Устанавливаем размер поля
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = "grey";
+
+    // Рисуем горизонтальные линии
+    for (let i = 0; i <= n; i++) {
+        ctx.beginPath();
+        ctx.moveTo(0, i * scale);
+        ctx.lineTo(n * scale, i * scale);
+        ctx.stroke();
+    }
+
+    // Рисуем вертикальные линии
+    for (let i = 0; i <= n; i++) {
+        ctx.beginPath();
+        ctx.moveTo(i * scale, 0);
+        ctx.lineTo(i * scale, n * scale);
+        ctx.stroke();
+    }
+
+    // Рисуем границу
+    ctx.strokeStyle = "black"; // Изменяем цвет границы на черный
+    ctx.strokeRect(0, 0, n * scale, n * scale);
+}
+
 function runRSK() {
     const permInput = document.getElementById('perm-btn').value;
     const permutation = permInput.split(' ').map(Number);
     classicalRSK(permutation); // анимация
-    //createTable(permutation);
-    //withLocalRulesRSK(permutation);
+    createTable(permutation);
+    withLocalRulesRSK(permutation);
+    createCanvas(permutation);
+    geometricalRSK(permutation);
 }

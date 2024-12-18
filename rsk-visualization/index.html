@@ -10,17 +10,22 @@
         <h1>Визуализация различных реализаций RSK-алгоритма</h1>
         <div>
             <label for="permutation">Введите перестановку (через пробел): </label>
-            <input type="text" id="perm-btn" value="3 1 6 10 2 5 8 4 9 7">
+            <input type="text" id="perm-btn" value="7 5 1 2 6 4 3">
             <button onclick="runRSK()">Запустить</button>
         </div>
         <section class="classical">
             <h2>Классический RSK</h2>
             <div id="classical"></div>
         </section>
-        <!--<section class="local-rules">
+        <section class="local-rules">
             <h2>Локальные правила на рёбрах:</h2>
             <table id="local-rules"></table>
-        </section>-->
+        </section>
+        <section class="local-rules">
+            <h2>Геометрическая конструкция Вьенно*:</h2>
+            <p>*для некоторых перестановок результат не будет верен, в силу различия JavaScript и C++</p>
+            <canvas id="canvas" width="500" height="500"></canvas>
+        </section>
         <script src="rsk.js"></script>
     </body>
 </html>
