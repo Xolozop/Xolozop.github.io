@@ -57,7 +57,6 @@ function visualize(P, Q, pushedElement, poppedElement) {
         // Визуализация таблицы P
         const tableauP = document.createElement('div');
         tableauP.className = 'tableau';
-        tableauP.innerHTML = `<p>a = ${pushedElement}</p><p>Tableau P:</p>`;
 
         const tableauQ = document.createElement('div');
         tableauQ.className = 'tableau';
@@ -88,12 +87,16 @@ function visualize(P, Q, pushedElement, poppedElement) {
             tableauP.appendChild(rowP);
             tableauQ.appendChild(rowQ);
         }
-        pair.appendChild(tableauP);
-        pair.appendChild(tableauQ);
+        const textP = document.createElement('p');
+        textP.innerHTML = 'Таблица P';
+        tableauP.appendChild(textP);
 
         const textQ = document.createElement('p');
-        textQ.innerHTML = 'Tableau Q';
+        textQ.innerHTML = 'Таблица Q';
         tableauQ.appendChild(textQ);
+
+        pair.appendChild(tableauP);
+        pair.appendChild(tableauQ);
 
         visualizationDiv.appendChild(pair);
 
@@ -164,7 +167,7 @@ async function withLocalRulesRSK(perm) {
             cells[x].style.borderTopColor = 'var(--color' + (current[x].up%6).toString() + ')';
             cells[x].style.backgroundColor = 'lightcoral';
             await delay(500);
-            cells[x].style.backgroundColor = 'white';
+            cells[x].style.backgroundColor = 'var(--bg-color)';
         }
         // Обновление P
         const a = current[n - 1].right;
@@ -240,14 +243,11 @@ async function geometricalRSK(perm) {
         permutation.set(i + 1, perm[i]); // (j; σ(j))
         ctx.fillRect(i*scale+(scale-5)/2, (n-perm[i])*scale+(scale-5)/2, 5, 5);
     }
-
     let i = 0; // порядок скелета
 
     while (permutation.size > 0) { // пока есть элементы в перестановке
         let mem = Array.from(permutation.values())[0]; // первое значение
         ctx.strokeStyle = colors[i];
-        console.log(i);
-        console.log(permutation);
         while (permutation.size > 0) { // построение теней
             P[i] = [];
             Q[i] = [];
@@ -284,7 +284,6 @@ async function geometricalRSK(perm) {
             P[i].push(prev); // индекс крайней нижней точки тени
             ctx.lineTo(n*scale, (n-prev+1)*scale-(scale-5)/2-2);
             path += `${n}:${prev} `;
-            console.log(path);
             ctx.stroke();
             await delay(1000);
         }
@@ -297,10 +296,12 @@ async function geometricalRSK(perm) {
 }
 
 function createCanvas(perm) {
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
     const scale = 35;
     const n = perm.length;
+    const canvas = document.getElementById('canvas');
+    canvas.width = (n*scale).toString();
+    canvas.height = (n*scale).toString();
+    const ctx = canvas.getContext('2d');
 
     // Устанавливаем размер поля
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -330,6 +331,7 @@ function createCanvas(perm) {
 function runRSK() {
     const permInput = document.getElementById('perm-btn').value;
     const permutation = permInput.split(' ').map(Number);
+
     classicalRSK(permutation); // анимация
     createTable(permutation);
     withLocalRulesRSK(permutation);

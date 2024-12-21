@@ -1,4 +1,5 @@
 :root {
+    --bg-color: azure;
     --color0: grey;
     --color1: black;
     --color2: red;
@@ -7,17 +8,55 @@
     --color5: orange;
 }
 
-.tableau {
-    display: block;
-    width: auto;
-    margin: 10px;
-    /* border: 1px dotted #000; */
-    /* height: 100%; */
-    padding: 10px;
+/* all style */
+body {
+    background-color: var(--bg-color);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.pair .tableau:first-child() {
-    height: 100%;
+
+/* header */
+h1 {
+    text-align: center;
+    border-bottom: 1px solid gray;
 }
+body > div {
+    text-align: center;
+}
+input {
+    background-color: var(--bg-color);
+    border: none;
+    border-bottom: 1px solid grey;
+    margin: 0 10px;
+}
+button {
+    background-color: lightgreen;
+    border-radius: 3px;
+    padding: 5px;
+}
+button:hover {
+    cursor: pointer;
+    background-color: rgb(108, 196, 108);
+}
+
+/* main table */
+table#main { 
+    width: max-content;
+    border-spacing: 40px;
+    border-collapse: separate;
+    border: 1px solid black;
+}
+td {
+    width: max-content;
+    padding: 0 10px;
+}
+#classical {
+    text-align: left;
+}
+body p {
+    margin-left: 20px;
+}
+
+/* classical */
 .cell {
     width: 30px;
     height: 30px;
@@ -27,51 +66,37 @@
     line-height: 30px;
     margin: 1px;
 }
-div#classical {
-    width: auto;
-    display: flex;
-    align-items: start;
-    flex-wrap: wrap;
-    align-items: stretch;
-    /* border: 1px solid black;*/
-}
-
-p {
-    padding: 0;
-    margin: 0;
-    margin-bottom: 5px;
+.tableau {
+    width: max-content;
+    padding: 10px 15px;
 }
 .pair {
-    /* height: 100%; */
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border: 1px solid #000;
-    margin: 10px 1px;
 }
-.pair p:first-child {
-    text-align: center;
-    border-bottom: 1px dotted #000;
-}
-
-td {
-    border: 3px solid gray;
-    width: 2em;
-    height: 2em;
+.pair p {
+    margin: 0 0 5px 0;
     text-align: center;
 }
 
-section {
+
+/* local rules */
+#local-rules {
+    width: max-content;
     margin-left: 20px;
 }
-section h2 {
-    margin-left: -20px;
+table#local-rules td {
+    border: 3px solid gray;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    text-align: center;
 }
-
-.highlight {
-    background-color: aquamarine;
-}
-
-.no-border {
+table#local-rules .no-border {
     border: none;
+}
+
+/* geometrical */
+canvas {
+    margin: 10px;
+    margin-left: 20px;
 }
