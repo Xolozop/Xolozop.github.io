@@ -288,7 +288,7 @@ async function geometricalRSK(perm) {
             await delay(1000);
         }
         // Обновляем permutation и skeleton
-        permutation = new Map(skeleton);
+        permutation = new Map([...skeleton.entries()].sort((a,b) => a[0] > b[0]));
         skeleton.clear(); // очищаем skeleton для следующей итерации
         i++;
     }
